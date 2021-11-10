@@ -2,19 +2,21 @@ import { Component } from 'react';
 import s from './ImageGallery.module.css';
 import ImageGalleryItem from '../ImageGalleryItem';
 import PicturesApi from '../../services/GetImageApi';
+import Button from '../Button';
 
 export default class ImageGallery extends Component {
   state = {
     images: null,
     error: null,
+    page: 1,
     status: 'idle',
   };
 
   componentDidUpdate(prevProps, prevState) {
     const prevRequest = prevProps.imageQuery;
     const newRequest = this.props.imageQuery;
+    const page = this.state.page;
     const API_KEY = '23521074-c1847750f84d7ba2d97c15f75';
-    const page = 1;
 
     if (prevRequest !== newRequest) {
       this.setState({ status: 'pending' });
@@ -24,6 +26,12 @@ export default class ImageGallery extends Component {
         .catch(error => this.state({ error, status: 'rejected' }));
     }
   }
+
+  onLoadMore = () => {
+    this.setState(prevState => {
+      return { page: prevState.page + 1 };
+    });
+  };
 
   render() {
     const { images, error, status } = this.state;
@@ -52,6 +60,7 @@ export default class ImageGallery extends Component {
               descr={hit.tags}
             />
           ))}
+          <Button onClick={this.onLoadMore} />
         </ul>
       );
     }
