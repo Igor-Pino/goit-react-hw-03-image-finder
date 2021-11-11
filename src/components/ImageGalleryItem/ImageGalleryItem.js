@@ -1,10 +1,9 @@
-import React from 'react';
 import s from './ImageGalleryItem.module.css';
 
-const ImageGalleryItem = ({ imageUrl, largeImageURL, descr }) => {
+const ImageGalleryItem = ({ imageUrl, openLarge }) => {
   return (
     <li className={s.ImageGalleryItem}>
-      <img src={imageUrl} alt={descr} className={s.ImageGalleryItem_image} />
+      <img src={imageUrl} alt="" className={s.ImageGalleryItem_image} onClick={openLarge} />
     </li>
   );
 };

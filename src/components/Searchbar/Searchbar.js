@@ -19,7 +19,7 @@ class SearchBar extends Component {
 
   handlerSubmit = e => {
     e.preventDefault();
-    this.props.onSubmit(this.state);
+    this.props.handlerSearcQuery(this.state);
     this.reset();
   };
 
@@ -48,7 +48,7 @@ class SearchBar extends Component {
 }
 
 SearchBar.propTypes = {
-  onSubmit: PropTypes.func.isRequired,
+  handlerSearcQuery: PropTypes.func.isRequired,
 };
 
 export default SearchBar;

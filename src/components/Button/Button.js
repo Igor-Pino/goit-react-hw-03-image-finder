@@ -1,16 +1,11 @@
 import s from './Button.module.css';
 
-const Button = () => {
+const Button = ({ loadMore }) => {
   return (
-    <button type="button" className={s.Button}>
+    <button type="button" onClick={loadMore} className={s.Button}>
       load more
     </button>
   );
 };
 
 export default Button;
-
-// window.scrollTo({
-//   top: document.documentElement.scrollHeight,
-//   behavior: 'smooth',
-// });

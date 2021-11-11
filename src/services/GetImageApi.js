@@ -1,13 +1,13 @@
-function fetchPictures(request, page, key) {
-  return fetch(`https://pixabay.com/api/?q=${request}&page=${page}&key=${key}&image_type=photo&orientation=horizontal&per_page=12
-    `).then(response => {
-    if (response.ok) {
-      return response.json();
-    }
-    return Promise.reject(new Error(`Error, no such querry ${request}`));
-  });
-}
+import axios from 'axios';
 
-const api = { fetchPictures };
+const key = '23521074-c1847750f84d7ba2d97c15f75';
 
-export default api;
+const searchApi = ({ searchQuery = '', page = 1 }) => {
+  return axios
+    .get(
+      `https://pixabay.com/api/?q=${searchQuery}&page=${page}&key=${key}&image_type=photo&orientation=horizontal&per_page=12`,
+    )
+    .then(({ data }) => data.hits);
+};
+
+export default searchApi;
