@@ -8,9 +8,9 @@ export default class App extends Component {
     return (
       <Loader
         type="ThreeDots"
-        color="#00BFFF"
-        height={100}
-        width={100}
+        color="#0e0e86"
+        height={80}
+        width={80}
         // timeout={3000}
         className={s.Loader}
       />

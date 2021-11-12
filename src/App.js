@@ -80,7 +80,7 @@ class App extends Component {
 
         <ImageGallery images={images} largeImage={this.getLargeImage} />
 
-        {isLoading && <Loader type="AThreeDots" color="#00BFFF" height={80} width={80} />}
+        {isLoading && <Loader />}
 
         {amount >= 11 && !isLoading && <Button loadMore={this.fetchImages} />}
 

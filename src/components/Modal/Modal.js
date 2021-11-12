@@ -8,10 +8,12 @@ const modalRoot = document.querySelector('#modal-root');
 class Modal extends Component {
   componentDidMount() {
     window.addEventListener('keydown', this.hendelKeyDown);
+    document.body.style.overflow = 'hidden';
   }
 
   componentWillUnmount() {
     window.removeEventListener('keydown', this.hendelKeyDown);
+    document.body.style.overflow = null;
   }
 
   hendelKeyDown = e => {
