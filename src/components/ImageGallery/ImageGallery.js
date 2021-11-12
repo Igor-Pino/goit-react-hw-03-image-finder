@@ -1,3 +1,4 @@
+import propTypes from 'prop-types';
 import s from './ImageGallery.module.css';
 import ImageGalleryItem from '../ImageGalleryItem';
 
@@ -10,6 +11,11 @@ const ImageGallery = ({ images, largeImage }) => {
       })}
     </ul>
   );
+};
+
+ImageGallery.propTypes = {
+  largeImage: propTypes.func.isRequired,
+  images: propTypes.array.isRequired,
 };
 
 export default ImageGallery;

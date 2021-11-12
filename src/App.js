@@ -4,6 +4,8 @@ import ImageGallery from './components/ImageGallery';
 import Button from './components/Button';
 import fetchApi from './services/GetImageApi';
 import Modal from './components/Modal';
+import Loader from './components/Loader';
+import Plug from './components/Plug';
 
 class App extends Component {
   state = {
@@ -19,6 +21,7 @@ class App extends Component {
 
   componentDidUpdate(prevProps, prevState) {
     if (prevState.searchQuery !== this.state.searchQuery) {
+      this.reset();
       this.fetchImages();
     }
     if (this.state.page !== 2 && prevState.page !== this.state.page) {
@@ -28,6 +31,10 @@ class App extends Component {
       });
     }
   }
+
+  reset = () => {
+    this.setState({ images: [], page: 1 });
+  };
 
   fetchImages = () => {
     const { page, searchQuery } = this.state;
@@ -63,15 +70,17 @@ class App extends Component {
   };
 
   render() {
-    const { images, showModal, largeImage, isLoading, amount } = this.state;
+    const { images, showModal, largeImage, isLoading, amount, page } = this.state;
 
     return (
       <div>
         <SearchBar handlerSearcQuery={this.handlerSearcQuery} />
 
-        {images.length === 0 && <p>nothing there</p>}
+        {images.length === 0 && !isLoading && page !== 1 && <Plug />}
 
         <ImageGallery images={images} largeImage={this.getLargeImage} />
+
+        {isLoading && <Loader type="AThreeDots" color="#00BFFF" height={80} width={80} />}
 
         {amount >= 11 && !isLoading && <Button loadMore={this.fetchImages} />}
 

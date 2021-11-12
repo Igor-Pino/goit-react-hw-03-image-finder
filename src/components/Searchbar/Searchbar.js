@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import s from './SearchForm.module.css';
+import { ReactComponent as Icon } from '../images/icon-check.svg';
 
 class SearchBar extends Component {
   state = {
@@ -29,7 +30,7 @@ class SearchBar extends Component {
       <header className={s.Searchbar}>
         <form className={s.SearchForm} onSubmit={this.handlerSubmit}>
           <button type="submit" className={s.SearchForm_button}>
-            <span className={s.SearchForm_button_label}>Search</span>
+            <Icon width="22" height="22" />
           </button>
 
           <input
