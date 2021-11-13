@@ -1,10 +1,13 @@
 import { Component } from 'react';
+import 'react-loader-spinner/dist/loader/css/react-spinner-loader.css';
+import Loader from 'react-loader-spinner';
+import s from './App.module.css';
 import SearchBar from './components/Searchbar';
 import ImageGallery from './components/ImageGallery';
 import Button from './components/Button';
 import fetchApi from './services/GetImageApi';
 import Modal from './components/Modal';
-import Loader from './components/Loader';
+
 import Plug from './components/Plug';
 
 class App extends Component {
@@ -78,9 +81,11 @@ class App extends Component {
 
         {images.length === 0 && !isLoading && page !== 1 && <Plug />}
 
-        <ImageGallery images={images} largeImage={this.getLargeImage} />
+        <ImageGallery images={images} getLargeImage={this.getLargeImage} />
 
-        {isLoading && <Loader />}
+        {isLoading && (
+          <Loader className={s.Loader} type="ThreeDots" color="#0e0e86" height={80} width={80} />
+        )}
 
         {amount >= 11 && !isLoading && <Button loadMore={this.fetchImages} />}
 
